@@ -27,7 +27,7 @@ with DAG('fetch_data',
     trigger_transformation = TriggerDagRunOperator(
         task_id = 'trigger_transformation',
         trigger_dag_id = 'transform_data',
-        execution_date = '{{ ds }}' # make sure the execution date for both will be the same. It will fail if retry. 
+        execution_date = '{{ ds }}', # make sure the execution date for both will be the same. It will fail if retry. 
         reset_dag_run=True, # Allows it to trigger again on re-runs 
         wait_for_completion=True, # It will wait the transform_data dag to finish, before marking completed
         poke_interval=30
