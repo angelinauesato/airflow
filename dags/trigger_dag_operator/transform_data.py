@@ -14,7 +14,8 @@ def _cleaning():
 with DAG('transform_data', 
     schedule_interval='@daily', 
     default_args=default_args, 
-    catchup=False) as dag:
+    catchup=False,
+    tags=["Training", "TriggerDagRunOperator", "PythonOperator"]) as dag:
 
     save_raw = BashOperator(
         task_id='save_raw',

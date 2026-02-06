@@ -17,7 +17,8 @@ def fetch_data_source():
 with DAG('fetch_data', 
     schedule_interval='@daily', 
     default_args=default_args, 
-    catchup=False) as dag:
+    catchup=False,
+    tags=["Training", "TriggerDagRunOperator", "PythonOperator"]) as dag:
 
     fetch_data_source = PythonOperator(
         task_id='fetch_data',
